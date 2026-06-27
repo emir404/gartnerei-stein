@@ -2,7 +2,7 @@
 
 The "specialize, don't template" step of `/create`. Every generated site gets **one signature visual** — a hero image, looping background, texture, or product render — chosen for *this* brand and generated from its tokens via fal.ai. This is what makes a build feel bespoke instead of a filled-in template.
 
-> Placeholders: model IDs are left as `<MODEL_ID_*>` for the user to confirm (we use fal + **Nano Banana 2**). The SDK is assumed to be **`@fal-ai/client`** — confirm before first run. Nothing here calls the network until those are filled in.
+> **Wired & live.** Model: fal **Nano Banana 2** — `fal-ai/nano-banana-2` (text-to-image) and `fal-ai/nano-banana-2/edit` (image-to-image / personalize a real photo). Generate via the **`genmedia`** CLI (already configured) or `@fal-ai/client` with `FAL_KEY`. Generate **once**, download into `src/assets/generated/`, and commit — never hot-link fal URLs. Guardrail: never run `/edit` on photos of people.
 
 ---
 
@@ -39,8 +39,8 @@ The "specialize, don't template" step of `/create`. Every generated site gets **
 
 | `type` | fal model (placeholder) | Notes |
 |---|---|---|
-| text-to-image | `<MODEL_ID_TEXT_TO_IMAGE>` | Nano Banana 2 — primary path |
-| image-to-image | `<MODEL_ID_IMAGE_TO_IMAGE>` | restyle/extend a source image |
+| text-to-image | `fal-ai/nano-banana-2` | Nano Banana 2 — signature hero / showcase |
+| image-to-image | `fal-ai/nano-banana-2/edit` | restyle/grade a real photo (pass `image_urls`) |
 | image-to-video | `<MODEL_ID_IMAGE_TO_VIDEO>` | short subtle loop from a still |
 | upscale | `<MODEL_ID_UPSCALE>` | resolution only, no restyle |
 
@@ -49,8 +49,8 @@ Resolve via a single map so swapping IDs is one edit:
 ```ts
 // lib/showcase/models.ts
 export const FAL_MODELS = {
-  textToImage: process.env.FAL_MODEL_TEXT_TO_IMAGE ?? "<MODEL_ID_TEXT_TO_IMAGE>",
-  imageToImage: process.env.FAL_MODEL_IMAGE_TO_IMAGE ?? "<MODEL_ID_IMAGE_TO_IMAGE>",
+  textToImage: process.env.FAL_MODEL_TEXT_TO_IMAGE ?? "fal-ai/nano-banana-2",
+  imageToImage: process.env.FAL_MODEL_IMAGE_TO_IMAGE ?? "fal-ai/nano-banana-2/edit",
   imageToVideo: process.env.FAL_MODEL_IMAGE_TO_VIDEO ?? "<MODEL_ID_IMAGE_TO_VIDEO>",
   upscale:      process.env.FAL_MODEL_UPSCALE ?? "<MODEL_ID_UPSCALE>",
 } as const;

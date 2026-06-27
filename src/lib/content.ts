@@ -49,21 +49,21 @@ export const HERO = {
   badge: "Familienbetrieb seit 1930",
   title: "Bei uns wird es bunt.",
   subtitle:
-    "Gärtnerei, Floristik, Gartencenter und Grabpflege in Altenkrempe — seit 1930 in Familienhand. Pflanzen, Blumen und Beratung in bester Hamerqualität, vieles aus eigener Aufzucht.",
+    "Gärtnerei, Floristik, Gartencenter und Grabpflege in Altenkrempe — in bester Hamerqualität.",
 } as const;
 
 export const PILLARS = [
   {
     title: "Aus eigener Aufzucht",
-    body: "Ein großer Teil unserer Pflanzen wächst direkt bei uns in den Gewächshäusern heran — frische Ware in bester Hamerqualität.",
+    body: "Vieles wächst direkt bei uns in den Gewächshäusern heran.",
   },
   {
     title: "Persönliche Beratung",
-    body: "Unser Team verwöhnt Sie mit Freundlichkeit, Rat und Tat, Hilfsbereitschaft und guter Laune. Wir nehmen uns Zeit für Sie.",
+    body: "Freundlich, kompetent und mit Zeit für Sie.",
   },
   {
     title: "Faire Preise",
-    body: "Alles zu angemessenen Preisen — im Vergleich zu anderen Gärtnereien günstig, ohne bei der Qualität Abstriche zu machen.",
+    body: "Beste Hamerqualität zu fairen Preisen.",
   },
 ] as const;
 

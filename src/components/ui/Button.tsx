@@ -5,7 +5,7 @@ type Variant = "primary" | "accent" | "outline" | "ghost" | "onDark";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium leading-none transition-all duration-200 ease-soft select-none cursor-pointer disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium leading-none transition-all duration-200 ease-soft select-none cursor-pointer active:scale-[0.96] disabled:opacity-50 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
   primary: "bg-primary text-background hover:bg-primary-deep shadow-sm hover:shadow-md hover:-translate-y-0.5",

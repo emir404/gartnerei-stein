@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Lora, Figtree } from "next/font/google";
+import { Playfair_Display, Figtree, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { MobileContactBar } from "@/components/site/MobileContactBar";
 
-const heading = Lora({
+const heading = Playfair_Display({
   subsets: ["latin"],
   style: ["normal", "italic"],
   variable: "--font-brand-heading",
@@ -14,6 +15,12 @@ const heading = Lora({
 const body = Figtree({
   subsets: ["latin"],
   variable: "--font-brand-body",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-brand-mono",
   display: "swap",
 });
 
@@ -56,12 +63,13 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${heading.variable} ${body.variable} antialiased`}
+      className={`${heading.variable} ${body.variable} ${mono.variable} antialiased`}
     >
-      <body className="min-h-dvh">
+      <body className="min-h-dvh pb-[68px] lg:pb-0">
         <Header />
         {children}
         <Footer />
+        <MobileContactBar />
       </body>
     </html>
   );

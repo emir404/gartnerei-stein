@@ -4,17 +4,26 @@ import { Container } from "@/components/ui/Container";
 import { SplitImage } from "@/components/ui/SplitImage";
 import { InfoGrid } from "@/components/ui/InfoGrid";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Gallery, type GalleryItem } from "@/components/ui/Gallery";
 import { Reveal } from "@/components/ui/Reveal";
 import { ContactCta } from "@/components/site/ContactCta";
-import { IMAGES } from "@/lib/images";
+import { GRAB, FUNERAL } from "@/lib/images";
 import { GRABPFLEGE, CONTACT } from "@/lib/content";
-import { Heart } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
   title: "Grabpflege",
   description:
     "Grabpflege und -gestaltung auf den Friedhöfen in Neustadt, Altenkrempe und Umgebung. Dauergrabpflege, Saisonpflege und individuelle Grabgestaltung.",
 };
+
+const GALLERY: GalleryItem[] = [
+  { src: GRAB[0], alt: "Grabgestaltung" },
+  { src: GRAB[1], alt: "Grabbepflanzung" },
+  { src: GRAB[2], alt: "Gepflegte Grabstätte" },
+  { src: FUNERAL[1], alt: "Trauergesteck" },
+  { src: FUNERAL[2], alt: "Grabschmuck" },
+  { src: FUNERAL[3], alt: "Kranz" },
+];
 
 export default function GrabpflegePage() {
   return (
@@ -24,37 +33,36 @@ export default function GrabpflegePage() {
         title={GRABPFLEGE.lead}
         intro={GRABPFLEGE.intro}
         crumb="Grabpflege"
+        image={GRAB[0]}
+        alt="Würdevolle Grabgestaltung der Gärtnerei Hamer"
       />
       <main>
         <section className="py-20 sm:py-28">
           <SplitImage
-            image={IMAGES["nursery-3"]}
-            alt="Grabgestaltung der Gärtnerei Hamer"
+            image={GRAB[1]}
+            alt="Grabpflege der Gärtnerei Hamer"
             eyebrow="Mit Respekt"
-            title="Wir kümmern uns — verlässlich und das ganze Jahr."
+            title="Wir kümmern uns — das ganze Jahr."
           >
-            <p>
-              Auf den Friedhöfen in Neustadt, Altenkrempe und Umgebung helfen wir
-              Ihnen gern bei Grabneuanlagen und -überholungen sowie der laufenden
-              Pflege.
-            </p>
-            <p className="flex items-center gap-2 text-base font-medium text-secondary">
-              <Heart size={18} />
-              {CONTACT.association}.
-            </p>
+            <p>{CONTACT.association}.</p>
           </SplitImage>
         </section>
 
         <section className="bg-surface py-20 sm:py-28">
           <Container>
-            <SectionHeading
-              eyebrow="Unsere Leistungen"
-              title="Würdevolle Grabpflege nach Ihren Wünschen."
-              className="max-w-2xl"
-            />
+            <SectionHeading eyebrow="Unsere Leistungen" title="Würdevoll und zuverlässig." className="max-w-2xl" />
             <div className="mt-12">
               <InfoGrid items={GRABPFLEGE.services} columns={2} />
             </div>
+          </Container>
+        </section>
+
+        <section className="py-20 sm:py-28">
+          <Container>
+            <SectionHeading eyebrow="Galerie" title="Gestaltung mit Gefühl." className="max-w-2xl" />
+            <Reveal className="mt-12">
+              <Gallery items={GALLERY} />
+            </Reveal>
           </Container>
         </section>
 

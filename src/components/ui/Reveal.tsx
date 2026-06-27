@@ -4,8 +4,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 /**
- * Fades + lifts children into view on scroll. Honors prefers-reduced-motion
- * (shows immediately, no transform). Content is always in the DOM for SEO/a11y.
+ * Blur-fade + lift into view on scroll. Honors prefers-reduced-motion
+ * (shows immediately). Content is always in the DOM for SEO/a11y.
  */
 export function Reveal({
   children,
@@ -35,7 +35,7 @@ export function Reveal({
           }
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -47,7 +47,9 @@ export function Reveal({
       style={{ transitionDelay: `${delay}ms` }}
       className={cn(
         "transition-all duration-700 ease-soft motion-reduce:transition-none",
-        shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5",
+        shown
+          ? "translate-y-0 opacity-100 blur-0"
+          : "translate-y-6 opacity-0 blur-[6px]",
         className
       )}
     >

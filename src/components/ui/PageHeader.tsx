@@ -1,41 +1,48 @@
+import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { Blob } from "@/components/ui/Blob";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
+/** Full-bleed image header for subpages. */
 export function PageHeader({
   eyebrow,
   title,
   intro,
   crumb,
+  image,
+  alt,
 }: {
   eyebrow?: string;
   title: string;
   intro?: ReactNode;
   crumb?: string;
+  image: StaticImageData;
+  alt: string;
 }) {
   return (
-    <header className="mesh-warm relative isolate overflow-hidden border-b border-border pt-28 pb-14 sm:pt-36 sm:pb-20">
-      <Blob
-        className="anim-float pointer-events-none absolute -top-12 -right-16 h-72 w-72 opacity-[0.16]"
-        color="var(--secondary)"
+    <header className="relative isolate flex min-h-[54svh] items-end overflow-hidden pt-24 sm:min-h-[62svh]">
+      <Image
+        src={image}
+        alt={alt}
+        fill
+        priority
+        placeholder="blur"
+        sizes="100vw"
+        className="-z-10 object-cover object-center"
       />
-      <Blob
-        className="pointer-events-none absolute -bottom-10 -left-20 h-64 w-64 opacity-[0.12]"
-        color="var(--accent)"
-      />
-      <Container className="relative">
-        <Breadcrumbs current={crumb ?? title} />
-        <div className="mt-6 max-w-2xl">
-          {eyebrow && (
-            <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-              <span className="rule-accent" />
-              {eyebrow}
-            </div>
-          )}
-          <h1 className="mt-4 text-balance text-4xl sm:text-6xl">{title}</h1>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/40" />
+      <Container className="pb-12 sm:pb-16">
+        <Breadcrumbs current={crumb ?? title} invert />
+        <div className="mt-5 max-w-3xl">
+          {eyebrow && <Eyebrow invert>{eyebrow}</Eyebrow>}
+          <h1 className="mt-4 text-balance text-4xl text-background sm:text-6xl lg:text-7xl">
+            {title}
+          </h1>
           {intro && (
-            <p className="mt-5 text-lg leading-relaxed text-muted">{intro}</p>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-background/85">
+              {intro}
+            </p>
           )}
         </div>
       </Container>

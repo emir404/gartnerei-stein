@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
+import { GEN } from "@/lib/images";
 import { CONTACT, HOURS } from "@/lib/content";
 import { MapPin, Clock, Phone, Mail, Instagram } from "@/components/ui/icons";
 
@@ -18,20 +19,34 @@ export default function KontaktPage() {
       <PageHeader
         eyebrow="Kontakt"
         title="So erreichen Sie uns."
-        intro="Rufen Sie an, schreiben Sie uns — oder kommen Sie direkt vorbei. Wir freuen uns auf Sie."
+        intro="Rufen Sie an, schreiben Sie uns — oder kommen Sie direkt vorbei."
         crumb="Kontakt"
+        image={GEN.garten}
+        alt="Die Gärtnerei Hamer in Altenkrempe"
       />
       <main className="py-20 sm:py-28">
         <Container>
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             <div className="space-y-4">
+              <div className="flex flex-wrap gap-3">
+                <ButtonLink href={CONTACT.phoneHref} variant="primary" size="lg">
+                  <Phone size={18} /> Anrufen
+                </ButtonLink>
+                <ButtonLink href={CONTACT.emailHref} variant="outline" size="lg">
+                  <Mail size={18} /> E-Mail
+                </ButtonLink>
+                <ButtonLink href={CONTACT.mapsHref} external variant="outline" size="lg">
+                  <MapPin size={18} /> Route
+                </ButtonLink>
+              </div>
+
               <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
                 <div className="flex items-start gap-4">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-secondary/12 text-secondary">
                     <MapPin size={20} />
                   </span>
                   <div>
-                    <h2 className="font-heading text-lg text-primary">Adresse</h2>
+                    <h2 className="text-lg font-semibold text-primary">Adresse</h2>
                     <p className="mt-2 text-foreground">
                       {CONTACT.name}
                       <br />
@@ -50,7 +65,7 @@ export default function KontaktPage() {
                     <Clock size={20} />
                   </span>
                   <div className="w-full">
-                    <h2 className="font-heading text-lg text-primary">Öffnungszeiten</h2>
+                    <h2 className="text-lg font-semibold text-primary">Öffnungszeiten</h2>
                     <dl className="mt-2 space-y-1.5 text-sm">
                       {HOURS.map((h) => (
                         <div key={h.d} className="flex justify-between gap-4">
@@ -69,7 +84,7 @@ export default function KontaktPage() {
                     <Phone size={20} />
                   </span>
                   <div>
-                    <h2 className="font-heading text-lg text-primary">Telefon & E-Mail</h2>
+                    <h2 className="text-lg font-semibold text-primary">Direkt erreichbar</h2>
                     <ul className="mt-2 space-y-1.5 text-sm">
                       <li className="flex items-center gap-2">
                         <Phone size={15} className="text-muted" />
@@ -94,15 +109,6 @@ export default function KontaktPage() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-3 pt-1">
-                <ButtonLink href={CONTACT.phoneHref} variant="primary" size="lg">
-                  Anrufen
-                </ButtonLink>
-                <ButtonLink href={CONTACT.mapsHref} external variant="outline" size="lg">
-                  Route planen
-                </ButtonLink>
-              </div>
-
               <p className="rounded-2xl border border-border bg-surface p-5 text-sm leading-relaxed text-muted">
                 <span className="font-semibold text-foreground">Übrigens:</span> An
                 unserer Regio-Box bekommen Sie rund um die Uhr frische Eier und
@@ -116,7 +122,7 @@ export default function KontaktPage() {
                 src="https://www.google.com/maps?q=Milchstra%C3%9Fe+23+23730+Altenkrempe&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="h-full min-h-[26rem] w-full rounded-[2rem] border border-border shadow-sm"
+                className="img-frame h-full min-h-[26rem] w-full rounded-[2rem]"
               />
             </Reveal>
           </div>

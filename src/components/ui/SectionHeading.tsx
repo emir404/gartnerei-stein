@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { cn } from "@/lib/cn";
 
 export function SectionHeading({
@@ -17,22 +18,10 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        align === "center" && "mx-auto max-w-2xl text-center",
-        className
-      )}
-    >
+    <div className={cn(align === "center" && "mx-auto max-w-2xl text-center", className)}>
       {eyebrow && (
-        <div
-          className={cn(
-            "flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em]",
-            invert ? "text-accent" : "text-secondary",
-            align === "center" && "justify-center"
-          )}
-        >
-          <span className="rule-accent" />
-          {eyebrow}
+        <div className={cn(align === "center" && "flex justify-center")}>
+          <Eyebrow invert={invert}>{eyebrow}</Eyebrow>
         </div>
       )}
       <h2

@@ -1,62 +1,62 @@
 import Image from "next/image";
-import Link from "next/link";
-import { IMAGES } from "@/lib/images";
+import { GEN } from "@/lib/images";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
-import { Blob } from "@/components/ui/Blob";
-import { HERO, CONTACT, SERVICES } from "@/lib/content";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { HERO, CONTACT } from "@/lib/content";
+import { Phone, Mail } from "@/components/ui/icons";
 
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[94svh] items-end overflow-hidden"
+      className="relative isolate flex min-h-[96svh] items-end overflow-hidden"
     >
-      <Image
-        src={IMAGES.hero}
-        alt="Die Gärtnerei Hamer in Altenkrempe — Pflanzen, so weit das Auge reicht"
-        fill
-        priority
-        placeholder="blur"
-        sizes="100vw"
-        className="-z-10 object-cover object-center"
-      />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-primary-deep/92 via-primary-deep/50 to-primary-deep/25" />
-      <Blob
-        className="anim-float pointer-events-none absolute -right-12 top-24 -z-10 h-80 w-80 opacity-25"
-        color="var(--accent)"
-      />
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <Image
+          src={GEN.hero}
+          alt="Die blühende Gärtnerei Hamer in Altenkrempe"
+          fill
+          priority
+          placeholder="blur"
+          sizes="100vw"
+          className="anim-ken-burns object-cover object-center"
+        />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/85 via-ink/45 to-ink/25" />
 
-      <Container className="pb-14 pt-32 sm:pb-20">
+      <Container className="pb-16 pt-32 sm:pb-24">
         <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-background/30 bg-background/10 px-4 py-1.5 text-sm font-medium text-background backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            {HERO.badge}
-          </span>
-          <h1 className="mt-6 text-balance text-5xl text-background sm:text-7xl lg:text-[5.5rem]">
+          <div className="anim-rise" style={{ animationDelay: "0.1s" }}>
+            <Eyebrow invert>{HERO.badge}</Eyebrow>
+          </div>
+          <h1
+            className="anim-rise mt-5 text-balance text-6xl text-background sm:text-8xl lg:text-[6.5rem]"
+            style={{ animationDelay: "0.2s" }}
+          >
             {HERO.title}
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-background/85 sm:text-xl">
+          <p
+            className="anim-rise mt-6 max-w-md text-lg leading-relaxed text-background/85 sm:text-xl"
+            style={{ animationDelay: "0.34s" }}
+          >
             {HERO.subtitle}
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <ButtonLink href="#leistungen" variant="accent" size="lg">
-              Unsere Bereiche
-            </ButtonLink>
-            <ButtonLink href={CONTACT.phoneHref} variant="onDark" size="lg">
+          <div
+            className="anim-rise mt-9 flex flex-wrap items-center gap-3"
+            style={{ animationDelay: "0.46s" }}
+          >
+            <ButtonLink href={CONTACT.phoneHref} variant="accent" size="lg">
+              <Phone size={18} />
               {CONTACT.phoneDisplay}
             </ButtonLink>
-          </div>
-          <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-background/70">
-            {SERVICES.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/${s.slug}`}
-                className="underline-offset-4 transition-colors hover:text-background hover:underline"
-              >
-                {s.name}
-              </Link>
-            ))}
+            <ButtonLink href={CONTACT.emailHref} variant="onDark" size="lg">
+              <Mail size={18} />
+              E-Mail
+            </ButtonLink>
+            <ButtonLink href="#leistungen" variant="onDark" size="lg">
+              Sortiment
+            </ButtonLink>
           </div>
         </div>
       </Container>

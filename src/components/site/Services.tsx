@@ -1,64 +1,62 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import { IMAGES } from "@/lib/images";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { GEN, GRAB } from "@/lib/images";
 import { SERVICES } from "@/lib/content";
-import { Flower, Leaf, Heart, Sprout, ArrowRight } from "@/components/ui/icons";
+import { ArrowRight } from "@/components/ui/icons";
+import { cn } from "@/lib/cn";
 
-const ICONS = { floristik: Flower, gartencenter: Leaf, grabpflege: Heart, aufzucht: Sprout };
+const IMG: Record<string, StaticImageData> = {
+  floristik: GEN.floristik,
+  gartencenter: GEN.garten,
+  grabpflege: GRAB[0],
+  aufzucht: GEN.plants,
+};
+const SPANS = ["sm:col-span-4", "sm:col-span-2", "sm:col-span-2", "sm:col-span-4"];
 
 export function Services() {
   return (
-    <section id="leistungen" className="scroll-mt-24 bg-surface py-20 sm:py-28">
+    <section id="leistungen" className="scroll-mt-24 py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Unsere Bereiche"
           title="Vier Wege, auf denen es bei Ihnen grünt und blüht."
-          intro="Von der ersten Aussaat bis zum fertig gebundenen Strauß — und alles dazwischen. Entdecken Sie unsere Bereiche."
-          className="max-w-3xl"
+          className="max-w-2xl"
         />
-
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
-          {SERVICES.map((s, i) => {
-            const Ico = ICONS[s.slug];
-            return (
-              <Reveal key={s.slug} delay={(i % 2) * 90}>
-                <Link
-                  href={`/${s.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 ease-soft hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={IMAGES[s.image]}
-                      alt=""
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-500 ease-soft group-hover:scale-105"
+        <div className="mt-12 grid gap-4 sm:auto-rows-[300px] sm:grid-cols-6">
+          {SERVICES.map((s, i) => (
+            <Reveal
+              key={s.slug}
+              delay={i * 80}
+              className={cn("h-[260px] sm:h-auto", SPANS[i])}
+            >
+              <Link
+                href={`/${s.slug}`}
+                className="group img-frame relative block h-full overflow-hidden rounded-2xl"
+              >
+                <Image
+                  src={IMG[s.slug]}
+                  alt={`${s.name} bei Gärtnerei Hamer`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 60vw"
+                  className="object-cover transition-transform duration-500 ease-soft group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <span className="label text-background/80">{s.tag}</span>
+                  <h3 className="mt-1.5 flex items-center gap-2 text-2xl text-background sm:text-3xl">
+                    {s.name}
+                    <ArrowRight
+                      size={20}
+                      className="-translate-x-2 opacity-0 transition-all duration-300 ease-soft group-hover:translate-x-0 group-hover:opacity-100"
                     />
-                    <span className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-background/95 text-primary shadow-sm backdrop-blur-sm">
-                      <Ico size={20} />
-                    </span>
-                  </div>
-                  <div className="flex flex-1 flex-col p-7">
-                    <h3 className="text-2xl text-primary">{s.name}</h3>
-                    <p className="mt-1 text-sm font-medium uppercase tracking-[0.14em] text-secondary">
-                      {s.tag}
-                    </p>
-                    <p className="mt-4 leading-relaxed text-muted">{s.summary}</p>
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors group-hover:text-secondary">
-                      Mehr erfahren
-                      <ArrowRight
-                        size={16}
-                        className="transition-transform duration-200 ease-soft group-hover:translate-x-1"
-                      />
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            );
-          })}
+                  </h3>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
         </div>
       </Container>
     </section>

@@ -54,8 +54,8 @@ The live palette and type are *recognizably* "garden," but dated and a little mu
 | Accent | `#CDB100` greenish mustard | `#DCA13A` honey-marigold (+ `#C9603A` terracotta bloom) | Cleaner warm pop against deep green; on-message for "Bei uns wird es bunt." |
 | Text | `#252525` | `#1E211C` warm near-black | Faint green-black warmth instead of flat grey. |
 | Links / buttons | `#0345BF` stock blue | brand greens | Drops the accidental, off-brand template default entirely. |
-| Heading font | Staatliches (condensed caps) | **Lora** (editorial serif) | Warm, modern editorial serif (Organic Biophilic); properly loaded via next/font. |
-| Body font | Open Sans | **Figtree** (modern sans) | Clean, friendly, modern humanist sans. |
+| Heading font | Staatliches (condensed caps) | **Playfair Display** (editorial serif) | High-contrast magazine serif — the Botanical Editorial pass. |
+| Body font | Open Sans | **Figtree** + **JetBrains Mono** labels | Clean modern sans body, mono uppercase micro-labels. |
 | Radius | `0px` + fully-round badges | `6 / 10 / 18px` | Gentle warmth without losing crispness. |
 | Shadow | `30px 30px 141px rgba(30,17,17,.5)` | soft green-tinted set | Restrained, editorial elevation instead of a harsh dark blur. |
 
@@ -82,7 +82,7 @@ Fonts will be **properly loaded** via `next/font` (fixing caveat 2), and the sto
   },
   "typography": {
     "heading": {
-      "family": "Lora",
+      "family": "Playfair Display",
       "fallback": "serif",
       "source": "google",
       "url": null,
@@ -124,7 +124,7 @@ Fonts will be **properly loaded** via `next/font` (fixing caveat 2), and the sto
 ```
 
 ### Token notes
-- **Type pairing (v2 — modern Organic Biophilic pass):** **Lora** (editorial serif) for headlines + **Figtree** (modern humanist sans) for body/UI, replacing the earlier Fraunces/Hanken Grotesk. Both Google Fonts, self-hosted via `next/font`.
+- **Type pairing (Botanical Editorial pass):** **Playfair Display** (editorial serif) for headlines + **Figtree** (body) + **JetBrains Mono** (uppercase micro-labels). Google Fonts, self-hosted via `next/font`. (Earlier passes: Fraunces/Hanken, then Lora/Figtree.)
 - **Contrast (WCAG AA):** `secondary` and `muted` were darkened (`#2F7350`, `#5F6459`) so labels/eyebrows hit ≥4.5:1 on paper and sage; the seasonal band derives an on-color text token (paper on dark seasons, ink on light) so white-on-honey never appears.
 - **Surface vs background:** warm paper `#FBF8F1` page with pale-sage `#ECEFE3` panels for alternating bands; pure `#FFFFFF` for raised cards. Deep green `#1B4D3B` / near-black `#16180F` for inverted feature/footer bands.
 - **Accent discipline:** honey `#DCA13A` is the primary accent (CTAs, highlights); terracotta `#C9603A` is a secondary "bloom" for occasional warmth/variety — used sparingly.

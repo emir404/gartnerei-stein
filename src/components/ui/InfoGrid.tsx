@@ -24,7 +24,7 @@ export function InfoGrid({
                 <Check size={16} />
               </span>
               <div>
-                <h3 className="font-heading text-lg text-primary">{it.name}</h3>
+                <h3 className="text-lg font-semibold text-primary">{it.name}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted">{it.desc}</p>
               </div>
             </div>

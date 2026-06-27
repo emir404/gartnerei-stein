@@ -2,6 +2,7 @@ import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { cn } from "@/lib/cn";
 
 export function SplitImage({
@@ -23,7 +24,7 @@ export function SplitImage({
     <Container>
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <Reveal className={cn(reverse && "lg:order-2")}>
-          <div className="mask-blob overflow-hidden shadow-lg">
+          <div className="img-frame overflow-hidden rounded-[1.75rem] shadow-lg">
             <Image
               src={image}
               alt={alt}
@@ -34,12 +35,7 @@ export function SplitImage({
         </Reveal>
         <Reveal delay={100} className={cn(reverse && "lg:order-1")}>
           <div>
-            {eyebrow && (
-              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-                <span className="rule-accent" />
-                {eyebrow}
-              </div>
-            )}
+            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
             {title && (
               <h2 className="mt-4 text-balance text-3xl sm:text-4xl">{title}</h2>
             )}
