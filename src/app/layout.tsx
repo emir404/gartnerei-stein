@@ -1,56 +1,52 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Figtree, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Mulish } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/site/Header";
-import { Footer } from "@/components/site/Footer";
-import { MobileContactBar } from "@/components/site/MobileContactBar";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Spine } from "@/components/Spine";
 
-const heading = Playfair_Display({
+const heading = Fraunces({
   subsets: ["latin"],
   style: ["normal", "italic"],
   variable: "--font-brand-heading",
   display: "swap",
 });
 
-const body = Figtree({
+const body = Mulish({
   subsets: ["latin"],
   variable: "--font-brand-body",
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-brand-mono",
-  display: "swap",
-});
+const description =
+  "Familienbetrieb seit 1976 in Lübeck / Groß Steinrade: frische Beet- und Balkonpflanzen, Schnittblumen und Floristik. Unsere Gärtnerei an der Steinrader Hauptstraße und der Blumenladen bei famila in Stockelsdorf.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gaertnerei-hamer.de"),
+  metadataBase: new URL("https://gaertnerei-stein.de"),
   title: {
-    default: "Gärtnerei Hamer — Floristik, Gartencenter & Grabpflege in Altenkrempe",
-    template: "%s — Gärtnerei Hamer",
+    default: "Gärtnerei Stein — Gärtnerei & Blumenladen in Lübeck / Groß Steinrade",
+    template: "%s — Gärtnerei Stein",
   },
-  description:
-    "Familienbetrieb seit 1930 in Altenkrempe: Floristik, Pflanzen & Blumen, Gartencenter, Grabpflege und eigene Aufzucht — alles in bester Hamerqualität.",
+  description,
   keywords: [
     "Gärtnerei",
+    "Blumenladen",
     "Floristik",
-    "Gartencenter",
-    "Grabpflege",
-    "Altenkrempe",
-    "Neustadt in Holstein",
-    "Blumen",
-    "Pflanzen",
-    "Garten- und Landschaftsbau",
+    "Beetpflanzen",
+    "Balkonpflanzen",
+    "Schnittblumen",
+    "Lübeck",
+    "Groß Steinrade",
+    "famila Stockelsdorf",
+    "Familienbetrieb",
   ],
-  authors: [{ name: "Gärtnerei Hamer GbR" }],
+  authors: [{ name: "Gärtnerei Stein" }],
   openGraph: {
     type: "website",
     locale: "de_DE",
-    siteName: "Gärtnerei Hamer",
-    title: "Gärtnerei Hamer — Bei uns wird es bunt",
-    description:
-      "Familienbetrieb seit 1930 in Altenkrempe: Floristik, Gartencenter, Grabpflege und eigene Aufzucht in bester Hamerqualität.",
+    siteName: "Gärtnerei Stein",
+    title: "Gärtnerei Stein — Pflanzen & Blumen aus Familienhand",
+    description,
   },
   alternates: { canonical: "/" },
 };
@@ -63,13 +59,19 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${heading.variable} ${body.variable} ${mono.variable} antialiased`}
+      className={`${heading.variable} ${body.variable} antialiased`}
     >
-      <body className="min-h-dvh pb-[68px] lg:pb-0">
-        <Header />
-        {children}
-        <Footer />
-        <MobileContactBar />
+      <body className="min-h-dvh">
+        <a
+          href="#sortiment"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:text-background"
+        >
+          Zum Inhalt springen
+        </a>
+        <SiteHeader />
+        <Spine />
+        <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

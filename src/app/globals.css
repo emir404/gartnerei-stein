@@ -1,25 +1,26 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Gärtnerei Hamer — Botanical Editorial design tokens
-   Raw values in :root → Tailwind utilities via @theme.
+   Gärtnerei Stein — "Botanischer Almanach"
+   Type-led editorial system. Stone paper · garden green · rose bloom.
+   Raw brand values in :root → Tailwind utilities via @theme.
    No component hardcodes a brand value.
    ============================================================ */
 :root {
   color-scheme: light;
 
-  --background:    #fbf8f1; /* warm paper            */
-  --foreground:    #1e211c; /* warm near-black ink   */
-  --surface:       #eef1e6; /* pale sage band        */
-  --card:          #ffffff; /* raised card           */
-  --primary:       #1b4d3b; /* deep evergreen        */
-  --primary-deep:  #0f3328; /* deepest shade         */
-  --secondary:     #2f7350; /* leaf green (AA-safe)  */
-  --accent:        #dca13a; /* honey / marigold      */
-  --accent-bloom:  #c9603a; /* terracotta bloom      */
-  --muted:         #5f6459; /* sage grey (AA-safe)   */
-  --border:        #e4e1d5; /* warm hairline         */
-  --ink:           #14160f; /* near-black            */
+  --background:    #f5f1e8; /* warm oat / limestone paper */
+  --foreground:    #23251d; /* warm near-black ink        */
+  --surface:       #eae3d3; /* soft stone band            */
+  --card:          #ffffff; /* raised card                */
+  --primary:       #2b5740; /* fresh garden green         */
+  --primary-deep:  #173a2a; /* deep forest (inverted)     */
+  --secondary:     #4f6b43; /* sage-olive (AA-safe)       */
+  --accent:        #c25a66; /* peony-rose bloom           */
+  --accent-soft:   #ebc9c2; /* soft blush tint            */
+  --muted:         #5e5e4d; /* warm grey (AA-darkened)    */
+  --border:        #e3dccb; /* warm hairline              */
+  --ink:           #181a12; /* deepest near-black (rare)  */
 }
 
 @theme inline {
@@ -31,28 +32,27 @@
   --color-primary-deep: var(--primary-deep);
   --color-secondary:    var(--secondary);
   --color-accent:       var(--accent);
-  --color-accent-bloom: var(--accent-bloom);
+  --color-accent-soft:  var(--accent-soft);
   --color-muted:        var(--muted);
   --color-border:       var(--border);
   --color-ink:          var(--ink);
 
   --font-heading: var(--font-brand-heading);
   --font-body:    var(--font-brand-body);
-  --font-mono:    var(--font-brand-mono);
   --font-sans:    var(--font-brand-body);
 }
 
 @theme {
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-xl: 34px;
-  --radius-2xl: 44px;
+  /* radius — gently soft (tokens.radius) */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 
-  /* layered shadows: hairline ring + lift */
-  --shadow-sm: 0 1px 2px rgba(20, 40, 30, 0.05);
-  --shadow-md: 0 0 0 1px rgba(20, 40, 30, 0.04), 0 10px 30px rgba(20, 40, 30, 0.07);
-  --shadow-lg: 0 0 0 1px rgba(20, 40, 30, 0.05), 0 30px 70px rgba(20, 40, 30, 0.13);
+  /* shadow — restrained, warm/green-tinted (tokens.shadow) */
+  --shadow-sm: 0 2px 8px rgba(35, 37, 29, 0.05);
+  --shadow-md: 0 14px 34px rgba(35, 37, 29, 0.08);
+  --shadow-lg: 0 30px 70px rgba(23, 58, 42, 0.14);
 
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -64,6 +64,7 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem; /* fixed header offset for anchors */
   }
   body {
     background: var(--background);
@@ -72,32 +73,33 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv01";
   }
-  /* Playfair for large display only — keeps small text readable + modern */
-  h1, h2 {
+  /* Fraunces for display headlines — warm, heritage, a little floral */
+  h1, h2, .font-display {
     font-family: var(--font-heading), Georgia, "Times New Roman", serif;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -0.018em;
+    line-height: 1.04;
     text-wrap: balance;
   }
   h3, h4 {
     font-family: var(--font-body), system-ui, sans-serif;
     font-weight: 600;
     letter-spacing: -0.01em;
-    line-height: 1.25;
+    line-height: 1.2;
     text-wrap: balance;
   }
   p { text-wrap: pretty; }
   a { color: inherit; text-decoration: none; }
   ::selection {
-    background: color-mix(in oklab, var(--accent) 32%, transparent);
+    background: color-mix(in oklab, var(--accent) 26%, transparent);
     color: var(--ink);
   }
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--primary);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 3px;
   }
 }
 
@@ -108,74 +110,65 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  .animate-marquee { animation: none !important; }
 }
 
 @layer utilities {
-  /* uppercase mono micro-label */
+  /* uppercase tracked micro-label (Mulish, no separate mono font) */
   .label {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
+    font-feature-settings: "tnum";
   }
-  /* legibility for light text over photography (inherited by descendants) */
-  .text-shadow-soft {
-    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.4);
+  /* tabular figures for the almanac numerals + hours */
+  .nums { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+
+  /* hairline rule helpers (token-driven) */
+  .rule { background: var(--border); }
+  .rule-strong { background: color-mix(in oklab, var(--foreground) 22%, transparent); }
+
+  /* a soft botanical wash for inverted / showcase fields (palette-driven) */
+  .bloom-field {
+    background-color: var(--surface);
+    background-image:
+      radial-gradient(58% 60% at 14% 12%, color-mix(in oklab, var(--secondary) 22%, transparent), transparent 70%),
+      radial-gradient(50% 52% at 88% 22%, color-mix(in oklab, var(--accent) 20%, transparent), transparent 72%),
+      radial-gradient(64% 66% at 78% 96%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 74%);
   }
-  /* 1px inset outline on imagery (editorial crispness) */
-  .img-frame {
-    outline: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
-    outline-offset: -1px;
+  .bloom-field-deep {
+    background-color: var(--primary-deep);
+    background-image:
+      radial-gradient(56% 60% at 16% 16%, color-mix(in oklab, var(--secondary) 40%, transparent), transparent 70%),
+      radial-gradient(52% 54% at 86% 28%, color-mix(in oklab, var(--accent) 34%, transparent), transparent 72%),
+      radial-gradient(60% 64% at 74% 94%, color-mix(in oklab, var(--primary) 60%, transparent), transparent 74%);
   }
-  /* subtle paper grain for inverted bands */
+
+  /* paper grain for inverted bands */
   .grain { position: relative; isolation: isolate; }
   .grain::after {
     content: "";
-    position: absolute; inset: 0; z-index: -1; pointer-events: none;
-    opacity: 0.4; mix-blend-mode: soft-light;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    opacity: 0.5; mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .rule-accent { height: 2px; width: 2.5rem; background: var(--accent); border-radius: 999px; }
-  .mask-blob { border-radius: 46% 54% 57% 43% / 47% 41% 59% 53%; }
-  .mesh-warm {
-    background-image:
-      radial-gradient(60% 55% at 12% 8%, color-mix(in oklab, var(--secondary) 14%, transparent), transparent 70%),
-      radial-gradient(55% 50% at 92% 18%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 70%),
-      radial-gradient(70% 60% at 78% 96%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 72%);
-  }
-  .anim-fade-up { animation: fade-up 0.5s var(--ease-soft) both; }
-  .anim-float { animation: float 9s ease-in-out infinite; }
-  .animate-marquee { animation: marquee 40s linear infinite; }
-  .pause-hover:hover .animate-marquee { animation-play-state: paused; }
-}
 
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(3deg); }
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-@keyframes ken-burns {
-  from { transform: scale(1.04); }
-  to { transform: scale(1.14); }
-}
-@keyframes rise {
-  from { opacity: 0; transform: translateY(18px); filter: blur(8px); }
-  to { opacity: 1; transform: none; filter: blur(0); }
-}
-
-@layer utilities {
-  .anim-ken-burns { animation: ken-burns 26s ease-out both; }
-  .anim-rise { animation: rise 0.8s var(--ease-soft) both; }
-  /* hide scrollbar on horizontal galleries */
   .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
   .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* reveal-on-scroll (JS toggles [data-shown]); reduced-motion shows instantly */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.7s var(--ease-soft),
+      transform 0.7s var(--ease-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal[data-shown="true"] { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
 }
