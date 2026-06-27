@@ -1,26 +1,152 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Gärtnerei Hamer — design tokens (Organic Biophilic, modern)
+   Source of truth: wikis/gaertnerei-hamer-de.md
+   Raw values in :root → Tailwind utilities via the @theme blocks.
+   No component hardcodes a brand value.
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  --background:    #fbf8f1; /* warm paper            */
+  --foreground:    #1e211c; /* warm near-black ink   */
+  --surface:       #eef1e6; /* pale sage band        */
+  --card:          #ffffff; /* raised card           */
+  --primary:       #1b4d3b; /* deep evergreen        */
+  --primary-deep:  #0f3328; /* deepest shade         */
+  --secondary:     #2f7350; /* leaf green (AA-safe)  */
+  --accent:        #dca13a; /* honey / marigold      */
+  --accent-bloom:  #c9603a; /* terracotta bloom      */
+  --muted:         #5f6459; /* sage grey (AA-safe)   */
+  --border:        #e4e1d5; /* warm hairline         */
+  --ink:           #14160f; /* near-black (footer)   */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background:   var(--background);
+  --color-foreground:   var(--foreground);
+  --color-surface:      var(--surface);
+  --color-card:         var(--card);
+  --color-primary:      var(--primary);
+  --color-primary-deep: var(--primary-deep);
+  --color-secondary:    var(--secondary);
+  --color-accent:       var(--accent);
+  --color-accent-bloom: var(--accent-bloom);
+  --color-muted:        var(--muted);
+  --color-border:       var(--border);
+  --color-ink:          var(--ink);
+
+  --font-heading: var(--font-brand-heading);
+  --font-body:    var(--font-brand-body);
+  --font-sans:    var(--font-brand-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* organic, modern structural tokens */
+@theme {
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 34px;
+  --radius-2xl: 44px;
+
+  --shadow-sm: 0 2px 8px rgba(20, 40, 30, 0.05);
+  --shadow-md: 0 14px 34px rgba(20, 40, 30, 0.08);
+  --shadow-lg: 0 32px 72px rgba(20, 40, 30, 0.14);
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading), Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  a { color: inherit; text-decoration: none; }
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 32%, transparent);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@layer utilities {
+  /* subtle paper grain for inverted feature/footer bands */
+  .grain { position: relative; isolation: isolate; }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* small accent stem */
+  .rule-accent {
+    height: 2px;
+    width: 2.5rem;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+  /* organic blob mask for imagery (modern biophilic shape) */
+  .mask-blob {
+    border-radius: 46% 54% 57% 43% / 47% 41% 59% 53%;
+  }
+  /* warm mesh backdrop — soft botanical depth */
+  .mesh-warm {
+    background-image:
+      radial-gradient(60% 55% at 12% 8%, color-mix(in oklab, var(--secondary) 16%, transparent), transparent 70%),
+      radial-gradient(55% 50% at 92% 18%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 70%),
+      radial-gradient(70% 60% at 78% 96%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 72%);
+  }
+  .anim-fade-up {
+    animation: fade-up 0.5s var(--ease-soft) both;
+  }
+  .anim-float {
+    animation: float 9s ease-in-out infinite;
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
 }
