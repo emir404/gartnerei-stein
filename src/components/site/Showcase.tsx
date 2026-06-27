@@ -19,8 +19,8 @@ export function Showcase() {
               sizes="(max-width: 1152px) 100vw, 1152px"
               className="-z-10 object-cover object-center"
             />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/15" />
-            <div className="max-w-xl px-7 py-20 sm:px-16 sm:py-28">
+            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/20" />
+            <div className="text-shadow-soft max-w-xl px-7 py-20 sm:px-16 sm:py-28">
               <Eyebrow invert>Bei uns wird es bunt</Eyebrow>
               <h2 className="mt-5 text-balance text-4xl text-background sm:text-6xl">
                 Ein Strauß für jeden Moment.

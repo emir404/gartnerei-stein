@@ -51,8 +51,8 @@ export function ImageBand({
           <div className="absolute inset-0">{picture}</div>
         )}
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/88 via-ink/55 to-ink/35" />
-      <Container className="py-20 sm:py-28">{children}</Container>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/60 to-ink/35" />
+      <Container className="text-shadow-soft py-20 sm:py-28">{children}</Container>
     </section>
   );
 }

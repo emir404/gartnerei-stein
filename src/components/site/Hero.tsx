@@ -3,8 +3,8 @@ import { GEN } from "@/lib/images";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { HERO, CONTACT } from "@/lib/content";
-import { Phone, Mail } from "@/components/ui/icons";
+import { HERO } from "@/lib/content";
+import { ArrowRight } from "@/components/ui/icons";
 
 export function Hero() {
   return (
@@ -25,7 +25,7 @@ export function Hero() {
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/85 via-ink/45 to-ink/25" />
 
-      <Container className="pb-16 pt-32 sm:pb-24">
+      <Container className="text-shadow-soft pb-16 pt-32 sm:pb-24">
         <div className="max-w-3xl">
           <div className="anim-rise" style={{ animationDelay: "0.1s" }}>
             <Eyebrow invert>{HERO.badge}</Eyebrow>
@@ -37,25 +37,15 @@ export function Hero() {
             {HERO.title}
           </h1>
           <p
-            className="anim-rise mt-6 max-w-md text-lg leading-relaxed text-background/85 sm:text-xl"
+            className="anim-rise mt-6 max-w-md text-lg leading-relaxed text-background/90 sm:text-xl"
             style={{ animationDelay: "0.34s" }}
           >
             {HERO.subtitle}
           </p>
-          <div
-            className="anim-rise mt-9 flex flex-wrap items-center gap-3"
-            style={{ animationDelay: "0.46s" }}
-          >
-            <ButtonLink href={CONTACT.phoneHref} variant="accent" size="lg">
-              <Phone size={18} />
-              {CONTACT.phoneDisplay}
-            </ButtonLink>
-            <ButtonLink href={CONTACT.emailHref} variant="onDark" size="lg">
-              <Mail size={18} />
-              E-Mail
-            </ButtonLink>
-            <ButtonLink href="#leistungen" variant="onDark" size="lg">
-              Sortiment
+          <div className="anim-rise mt-9" style={{ animationDelay: "0.46s" }}>
+            <ButtonLink href="#leistungen" variant="accent" size="lg">
+              Sortiment entdecken
+              <ArrowRight size={18} />
             </ButtonLink>
           </div>
         </div>

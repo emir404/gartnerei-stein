@@ -54,7 +54,7 @@ export function Gallery({
                 className="object-cover transition-transform duration-500 ease-soft group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="label absolute inset-x-3 bottom-3 text-left text-background opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <span className="label text-shadow-soft absolute inset-x-3 bottom-3 text-left text-background opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 {it.alt}
               </span>
             </button>

@@ -31,8 +31,8 @@ export function PageHeader({
         sizes="100vw"
         className="-z-10 object-cover object-center"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/40" />
-      <Container className="pb-12 sm:pb-16">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/60 to-ink/45" />
+      <Container className="text-shadow-soft pb-12 sm:pb-16">
         <Breadcrumbs current={crumb ?? title} invert />
         <div className="mt-5 max-w-3xl">
           {eyebrow && <Eyebrow invert>{eyebrow}</Eyebrow>}

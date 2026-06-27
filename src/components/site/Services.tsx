@@ -43,8 +43,8 @@ export function Services() {
                   sizes="(max-width: 640px) 100vw, 60vw"
                   className="object-cover transition-transform duration-500 ease-soft group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-transparent" />
+                <div className="text-shadow-soft absolute inset-x-0 bottom-0 p-6">
                   <span className="label text-background/80">{s.tag}</span>
                   <h3 className="mt-1.5 flex items-center gap-2 text-2xl text-background sm:text-3xl">
                     {s.name}

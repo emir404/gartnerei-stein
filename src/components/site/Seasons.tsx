@@ -59,20 +59,20 @@ export function Seasons() {
                 )}
               />
             ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10">
-              <span className="label text-background/80">
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/70 to-transparent" />
+            <div className="text-shadow-soft absolute inset-x-0 bottom-0 p-7 sm:p-10">
+              <span className="label text-background/85">
                 0{active + 1} / 0{SEASONS.length} · {s.label}
               </span>
               <h3 className="mt-2 font-heading text-3xl text-background sm:text-4xl">
                 {s.headline}
               </h3>
-              <p className="mt-3 max-w-md text-background/85">{s.note}</p>
+              <p className="mt-3 max-w-md text-background/90">{s.note}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {s.plants.map((p) => (
                   <li
                     key={p}
-                    className="rounded-full border border-background/30 bg-background/10 px-3 py-1 text-sm text-background backdrop-blur-sm"
+                    className="rounded-full border border-background/25 bg-ink/45 px-3 py-1 text-sm text-background backdrop-blur-sm"
                   >
                     {p}
                   </li>

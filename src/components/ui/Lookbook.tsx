@@ -64,7 +64,7 @@ export function Lookbook({ items }: { items: LightboxItem[] }) {
               className="object-cover transition-transform duration-700 ease-soft group-hover:scale-[1.06]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <span className="label absolute bottom-4 left-4 right-4 text-left text-background opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <span className="label text-shadow-soft absolute bottom-4 left-4 right-4 text-left text-background opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               {it.alt}
             </span>
           </button>
