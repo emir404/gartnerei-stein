@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
 import { sections, primaryPhone, business } from "@/lib/site";
+import logo from "@/assets/brand/logo.png";
 
 const navItems = sections.filter((s) => s.id !== "start");
 
@@ -40,10 +42,15 @@ export function SiteHeader() {
         <a
           href="#start"
           onClick={() => setOpen(false)}
-          className="flex items-baseline gap-2 font-display text-[1.35rem] leading-none tracking-tight"
+          className="flex items-center gap-2.5"
         >
-          <span>Gärtnerei Stein</span>
-          <span aria-hidden className="hidden text-[0.95rem] italic text-muted sm:inline">
+          <Image
+            src={logo}
+            alt="Gärtnerei Stein"
+            priority
+            className="h-11 w-11 sm:h-12 sm:w-12"
+          />
+          <span aria-hidden className="hidden font-display text-[0.95rem] italic text-muted sm:inline">
             seit {business.foundedYear}
           </span>
         </a>

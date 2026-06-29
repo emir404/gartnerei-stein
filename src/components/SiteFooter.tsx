@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Leaf } from "@/components/Botanical";
 import { sections, standorte, business } from "@/lib/site";
+import logo from "@/assets/brand/logo.png";
 
 const navItems = sections.filter((s) => s.id !== "start");
 
@@ -12,7 +14,7 @@ export function SiteFooter() {
       <Container className="py-14 sm:py-16">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1.2fr] md:gap-12">
           <div>
-            <p className="font-display text-2xl leading-none">Gärtnerei Stein</p>
+            <Image src={logo} alt="Gärtnerei Stein" className="h-16 w-16" />
             <p className="mt-3 inline-flex items-center gap-2 text-sm text-muted">
               <Leaf className="size-4 text-primary" />
               Familienbetrieb seit {business.foundedYear}

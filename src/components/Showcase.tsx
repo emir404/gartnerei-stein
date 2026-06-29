@@ -33,7 +33,7 @@ export function Showcase() {
           <div className="grain flex min-h-[58vh] max-w-2xl flex-col justify-end py-16 text-background sm:min-h-[64vh] sm:py-20">
             <p className="label text-background/75">Botanischer Almanach</p>
             <p className="mt-4 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] leading-[1.12]">
-              Frisch aus Groß Steinrade — von der Gärtnerei bis in Ihre Vase.
+              Frisch aus Groß Steinrade, von der Gärtnerei bis in Ihre Vase.
             </p>
           </div>
         </Container>
@@ -52,7 +52,7 @@ export function Showcase() {
           Botanischer Almanach
         </p>
         <p className="mx-auto mt-4 max-w-3xl font-display text-[clamp(1.9rem,4.2vw,3.1rem)] leading-[1.14]">
-          Frisch aus Groß Steinrade — von der Gärtnerei bis in Ihre Vase.
+          Frisch aus Groß Steinrade, von der Gärtnerei bis in Ihre Vase.
         </p>
       </Container>
     </section>

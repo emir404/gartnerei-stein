@@ -42,7 +42,7 @@ const jsonLd = {
   department: [
     {
       "@type": "Florist",
-      name: "Gärtnerei Stein — Blumenladen bei famila",
+      name: "Gärtnerei Stein · Blumenladen bei famila",
       telephone: "+49 451 81300818",
       address: {
         "@type": "PostalAddress",

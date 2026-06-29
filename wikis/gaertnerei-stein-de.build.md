@@ -158,3 +158,52 @@ null` to use it) for a zero-asset rebuild.
   desired (no logo asset exists to derive one from).
 - Dark mode intentionally light-only.
 - Preview: `bun run dev` → http://localhost:3000.
+
+---
+
+## Revision — real photos, clipped logo, dash cleanup (2026-06-29)
+
+User-requested follow-up: *"put a few more images, drop the long dashes, and
+use their logo (clip its background)."* Five owner-supplied photos (`images/`)
+and the real wordmark (`logo.jpg`) were brought in.
+
+**Real logo (background clipped via genmedia).** `logo.jpg` (green "Gärtnerei
+Stein" wordmark on white) was uploaded to fal and run through **BiRefNet v2**
+(`fal-ai/birefnet/v2`, `output_format=png`) to drop the white background →
+`src/assets/brand/logo.png` (transparent, 200×200). It now replaces the Fraunces
+text wordmark in **SiteHeader** (44–48px, beside the italic "seit 1976") and
+**SiteFooter** (64px). Reproducible via `scripts/generate-media.sh` (new
+`clip_logo` step; `geturl` extended to read birefnet's singular `result.image`).
+
+**Photos (5), placed editorially — not a generic gallery.** Copied to
+`src/assets/photos/`, served through `next/image` (static import → optimization +
+blur-up), framed in brand tokens with a restrained hover-zoom via a new shared
+**`Figure`** component (overlay-caption variant reuses the showcase treatment):
+- **Hero** — `gewaechshaus.jpg` (greenhouse interior, portrait) replaces the
+  token-only "almanac card" as the signature hero visual.
+- **Sortiment** — `geranien.jpg` as a wide cinematic band under the header.
+- **Zwei Orte** — each location card gains a photo header: `stiefmuetterchen.jpg`
+  (Gärtnerei) and `chrysanthemen.jpg` (Blumenladen). The decorative `Sprig` was
+  dropped from these cards (the photo now carries the visual).
+- **Über uns** — `schild.jpg` (the painted storefront sign). Its third-party
+  "© LUT" watermark is cropped out purely in-layout via `object-cover object-top`
+  in a 16/10 frame (keeps the top ~83%), so the source file is left untouched.
+
+Lede and Kontakt stay type-only for rhythm; the AI `showcase.jpg` is unchanged.
+Photo count on the page: 8 `<img>` (5 photos + logo ×2 + showcase).
+
+**Em dashes dropped.** Every visible "—" in copy was rewritten to flow with
+commas/colons/periods (e.g. hero, lede, sortiment items, über-uns, kontakt,
+showcase caption, page/OG titles, JSON-LD `name`); numbered section labels now
+read `02 · Sortiment` etc. The en-dash **ranges** in opening hours (`Mo – Fr`,
+`08:00 – 18:00`) are correct range notation and were intentionally kept. Code
+comments (not rendered) keep the house em-dash style. Served-HTML grep: **0** em
+dashes.
+
+**Verification:** `bun run build` ✓ clean (TypeScript + static prerender).
+Served-HTML smoke test ✓ — all 5 photo `alt`s, both logo instances, and the
+showcase present; zero "—" in the visible output.
+
+> Raw inputs: `logo.jpg` is committed (the logo step reads it). The `images/`
+> drop is left untracked — `src/assets/photos/` holds the same originals (renamed)
+> and is what the site imports.

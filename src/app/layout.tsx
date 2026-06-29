@@ -24,8 +24,8 @@ const description =
 export const metadata: Metadata = {
   metadataBase: new URL("https://gaertnerei-stein.de"),
   title: {
-    default: "Gärtnerei Stein — Gärtnerei & Blumenladen in Lübeck / Groß Steinrade",
-    template: "%s — Gärtnerei Stein",
+    default: "Gärtnerei Stein · Blumen & Pflanzen in Lübeck / Groß Steinrade",
+    template: "%s · Gärtnerei Stein",
   },
   description,
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     siteName: "Gärtnerei Stein",
-    title: "Gärtnerei Stein — Pflanzen & Blumen aus Familienhand",
+    title: "Gärtnerei Stein · Pflanzen & Blumen aus Familienhand",
     description,
   },
   alternates: { canonical: "/" },

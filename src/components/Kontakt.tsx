@@ -11,14 +11,14 @@ export function Kontakt() {
     >
       <Container className="relative py-20 sm:py-28">
         <div className="grid gap-10 lg:grid-cols-[14rem_1fr] lg:gap-16">
-          <p className="label text-background/65 lg:pt-3">05 — Kontakt</p>
+          <p className="label text-background/65 lg:pt-3">05 · Kontakt</p>
           <div>
             <Reveal>
               <h2 className="max-w-2xl font-display text-[clamp(2.1rem,4.8vw,3.5rem)] leading-[1.04]">
                 Kommen Sie vorbei.
               </h2>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-background/80">
-                Wir haben keinen Onlineshop — dafür zwei Orte, an denen Sie alles
+                Wir haben keinen Onlineshop, dafür zwei Orte, an denen Sie alles
                 in die Hand nehmen können. Rufen Sie an oder schauen Sie einfach
                 vorbei.
               </p>

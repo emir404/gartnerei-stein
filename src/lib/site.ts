@@ -81,30 +81,30 @@ export const sortiment = [
     n: "01",
     title: "Beet- & Balkonpflanzen",
     body:
-      "Kräftige Beet- und Balkonpflanzen für die Saison — von der ersten Frühlingsbepflanzung bis zum vollen Sommerkasten. Aus unserer Gärtnerei in Groß Steinrade.",
+      "Kräftige Beet- und Balkonpflanzen für die Saison, von der ersten Frühlingsbepflanzung bis zum vollen Sommerkasten. Aus unserer Gärtnerei in Groß Steinrade.",
   },
   {
     n: "02",
     title: "Schnittblumen & Sträuße",
     body:
-      "Frische Schnittblumen und von Hand gebundene Sträuße — für den Alltag, zum Verschenken oder einfach für sich. Täglich frisch im Blumenladen bei famila.",
+      "Frische Schnittblumen und von Hand gebundene Sträuße für den Alltag, zum Verschenken oder einfach für sich. Täglich frisch im Blumenladen bei famila.",
   },
   {
     n: "03",
     title: "Garten- & Grünpflanzen",
     body:
-      "Stauden, Grün- und Gartenpflanzen für Beet, Terrasse und Fensterbank — gesund gezogen und ehrlich ausgewählt.",
+      "Stauden, Grün- und Gartenpflanzen für Beet, Terrasse und Fensterbank, gesund gezogen und ehrlich ausgewählt.",
   },
   {
     n: "04",
     title: "Floristik",
     body:
-      "Florale Arbeiten und Gestecke für Ihre Anlässe — schlicht oder üppig, immer aus der Hand der Familie Stein.",
+      "Florale Arbeiten und Gestecke für Ihre Anlässe, schlicht oder üppig, immer aus der Hand der Familie Stein.",
   },
   {
     n: "05",
     title: "Beratung aus Erfahrung",
     body:
-      "Was wächst wo am besten? Seit 1976 geben wir unser Wissen gern weiter — persönlich, geduldig und ohne Verkaufsdruck.",
+      "Was wächst wo am besten? Seit 1976 geben wir unser Wissen gern weiter: persönlich, geduldig und ohne Verkaufsdruck.",
   },
 ] as const;
