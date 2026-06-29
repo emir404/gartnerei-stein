@@ -29,6 +29,9 @@ export function SiteHeader() {
     return () => window.removeEventListener("resize", onResize);
   }, [open]);
 
+  // at the very top with the menu closed, the bar floats over the hero photo
+  const onHero = !scrolled && !open;
+
   return (
     <header
       className={cn(
@@ -48,9 +51,18 @@ export function SiteHeader() {
             src={logo}
             alt="Gärtnerei Stein"
             priority
-            className="h-11 w-11 sm:h-12 sm:w-12"
+            className={cn(
+              "h-11 w-11 transition-[filter] duration-300 sm:h-12 sm:w-12",
+              onHero && "[filter:brightness(0)_invert(1)]",
+            )}
           />
-          <span aria-hidden className="hidden font-display text-[0.95rem] italic text-muted sm:inline">
+          <span
+            aria-hidden
+            className={cn(
+              "hidden font-display text-[0.95rem] italic transition-colors sm:inline",
+              onHero ? "text-background/70" : "text-muted",
+            )}
+          >
             seit {business.foundedYear}
           </span>
         </a>
@@ -60,7 +72,12 @@ export function SiteHeader() {
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="label text-foreground/70 transition-colors hover:text-foreground"
+              className={cn(
+                "label transition-colors",
+                onHero
+                  ? "text-background/80 hover:text-background"
+                  : "text-foreground/70 hover:text-foreground",
+              )}
             >
               {item.label}
             </a>
@@ -89,7 +106,12 @@ export function SiteHeader() {
             aria-controls="mobile-menu"
             aria-label={open ? "Menü schließen" : "Menü öffnen"}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 text-foreground active:scale-95"
+            className={cn(
+              "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors active:scale-95",
+              onHero
+                ? "border-background/35 text-background"
+                : "border-foreground/20 text-foreground",
+            )}
           >
             <span className="relative block h-3.5 w-4.5">
               <span

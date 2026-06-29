@@ -207,3 +207,26 @@ showcase present; zero "—" in the visible output.
 > Raw inputs: `logo.jpg` is committed (the logo step reads it). The `images/`
 > drop is left untracked — `src/assets/photos/` holds the same originals (renamed)
 > and is what the site imports.
+
+### Follow-up — full-bleed image hero (2026-06-29)
+
+User asked for the hero to open on a photo background ("wow this looks nice" on
+first click). The Hero changed from a two-column (text + side `Figure`) to a
+**full-bleed image section** (`min-h-[90svh]`): the geraniums photo runs edge to
+edge behind the copy, with two `primary-deep` gradient scrims (strong at the foot
+for the headline, a lighter top band for header legibility), light overlaid copy
+(`text-background`, headline emphasis in `accent-soft`, soft text-shadows), and a
+small bobbing scroll cue. A slow 18s settle-in zoom (`hero-kenburns`) adds life;
+both new animations sit under the existing `prefers-reduced-motion` guard.
+
+**Header now adapts** (`SiteHeader`): while floating over the hero it uses light
+nav/menu colours and a white (inverted) logo, reverting to dark text + the
+full-colour logo once the bar condenses on scroll.
+
+**Photos reshuffled so none repeat** (the hero claimed a landscape shot): hero =
+`geranien`, Sortiment band = `stiefmuetterchen`, Zwei-Orte Gärtnerei card =
+`gewaechshaus` (greenhouse interior — also a better semantic fit for the nursery),
+Blumenladen = `chrysanthemen`, Über uns = `schild`. Page still has 8 `<img>`
+(5 photos + logo ×2 + showcase), each photo used exactly once. Build ✓ clean;
+served-HTML smoke test ✓ (all alts present, 0 em dashes). Swapping the hero photo
+is a one-line import change in `Hero.tsx`.

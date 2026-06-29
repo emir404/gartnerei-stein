@@ -3,16 +3,16 @@ import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
 import { Cta } from "@/components/Cta";
 import { standorte } from "@/lib/site";
-import stiefmuetterchen from "@/assets/photos/stiefmuetterchen.jpg";
+import gewaechshaus from "@/assets/photos/gewaechshaus.jpg";
 import chrysanthemen from "@/assets/photos/chrysanthemen.jpg";
 
 const cardPhoto: Record<string, StaticImageData> = {
-  gaertnerei: stiefmuetterchen,
+  gaertnerei: gewaechshaus,
   blumenladen: chrysanthemen,
 };
 const cardAlt: Record<string, string> = {
   gaertnerei:
-    "Tische voller blühender Stiefmütterchen in der Gärtnerei in Groß Steinrade",
+    "Blick in ein Gewächshaus der Gärtnerei in Groß Steinrade mit langen Pflanzenreihen",
   blumenladen:
     "Üppige rosafarbene Chrysanthemen, frisch für den Blumenladen bei famila",
 };

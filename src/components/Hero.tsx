@@ -1,62 +1,77 @@
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Cta } from "@/components/Cta";
 import { Leaf } from "@/components/Botanical";
-import { Figure } from "@/components/Figure";
 import { primaryPhone } from "@/lib/site";
-import gewaechshaus from "@/assets/photos/gewaechshaus.jpg";
+import heroBg from "@/assets/photos/geranien.jpg";
 
 export function Hero() {
   return (
-    <section id="start" className="relative overflow-hidden">
-      {/* faint botanical wash bleeding from the right */}
+    <section
+      id="start"
+      className="relative isolate flex min-h-[90svh] items-end overflow-hidden"
+    >
+      {/* full-bleed background photo of the nursery */}
+      <Image
+        src={heroBg}
+        alt="Lange Reihen kräftiger roter Geranien unter den Glasdächern der Gärtnerei Stein"
+        fill
+        priority
+        sizes="100vw"
+        placeholder="blur"
+        className="hero-kenburns -z-20 object-cover object-center"
+      />
+      {/* legibility scrims: strong at the foot for the headline, a touch at the
+          very top so the overlaid header stays readable over any photo */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-32 -top-24 h-[42rem] w-[42rem] rounded-full bloom-field opacity-50 blur-2xl"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-primary-deep/92 via-primary-deep/45 to-primary-deep/25"
       />
-      <Container className="relative pb-16 pt-32 sm:pt-40 lg:pb-28">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.06fr_0.94fr] lg:gap-16">
-          <div>
-            <p className="label inline-flex items-center gap-2 text-secondary">
-              <Leaf className="size-4" />
-              Familienbetrieb seit 1976 · Lübeck
-            </p>
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-primary-deep/55 to-transparent"
+      />
 
-            <h1 className="mt-6 font-display text-[clamp(2.7rem,7.2vw,5.25rem)] leading-[1.01] tracking-[-0.02em]">
-              Aus einer Hand:
-              <br />
-              <em className="text-primary">gewachsen &amp; gebunden.</em>
-            </h1>
+      <Container className="relative w-full pb-20 pt-36 text-background sm:pb-28">
+        <div className="max-w-2xl">
+          <p className="label inline-flex items-center gap-2 text-background/80">
+            <Leaf className="size-4" />
+            Familienbetrieb seit 1976 · Lübeck
+          </p>
 
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
-              Ein Familienbetrieb in Lübeck / Groß Steinrade: kräftige Beet- und
-              Balkonpflanzen aus der eigenen Gärtnerei, dazu täglich frische
-              Blumen im Laden bei famila in Stockelsdorf.
-            </p>
+          <h1 className="mt-6 font-display text-[clamp(2.8rem,7.6vw,5.5rem)] leading-[1.0] tracking-[-0.02em] [text-shadow:0_1px_34px_rgba(11,28,20,0.5)]">
+            Aus einer Hand:
+            <br />
+            <em className="text-accent-soft">gewachsen &amp; gebunden.</em>
+          </h1>
 
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Cta href="#sortiment" withArrow>
-                Zum Sortiment
-              </Cta>
-              <Cta href={primaryPhone.phoneHref} variant="outline">
-                {primaryPhone.phone}
-              </Cta>
-            </div>
-          </div>
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-background/85 [text-shadow:0_1px_18px_rgba(11,28,20,0.45)]">
+            Ein Familienbetrieb in Lübeck / Groß Steinrade: kräftige Beet- und
+            Balkonpflanzen aus der eigenen Gärtnerei, dazu täglich frische
+            Blumen im Laden bei famila in Stockelsdorf.
+          </p>
 
-          {/* signature hero visual — our greenhouse in Groß Steinrade */}
-          <div className="relative">
-            <Figure
-              image={gewaechshaus}
-              alt="Blick in ein Gewächshaus der Gärtnerei Stein mit langen, blühenden Pflanzenreihen"
-              eyebrow="Unsere Gärtnerei"
-              caption="Groß Steinrade, seit 1976."
-              priority
-              sizes="(min-width: 1024px) 44vw, 100vw"
-              className="aspect-[4/5] w-full"
-            />
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <Cta href="#sortiment" tone="dark" withArrow>
+              Zum Sortiment
+            </Cta>
+            <Cta href={primaryPhone.phoneHref} tone="dark" variant="outline">
+              {primaryPhone.phone}
+            </Cta>
           </div>
         </div>
       </Container>
+
+      {/* gentle scroll cue */}
+      <a
+        href="#sortiment"
+        aria-label="Weiter zu unserem Sortiment"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-background/70 transition-colors hover:text-background sm:block"
+      >
+        <span className="flex h-9 w-6 items-start justify-center rounded-full border border-background/40">
+          <span className="cue-bob mt-1.5 block h-1.5 w-1.5 rounded-full bg-current" />
+        </span>
+      </a>
     </section>
   );
 }

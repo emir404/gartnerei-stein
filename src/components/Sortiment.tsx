@@ -3,7 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { Figure } from "@/components/Figure";
 import { Leaf } from "@/components/Botanical";
 import { sortiment } from "@/lib/site";
-import geranien from "@/assets/photos/geranien.jpg";
+import stiefmuetterchen from "@/assets/photos/stiefmuetterchen.jpg";
 
 export function Sortiment() {
   return (
@@ -25,8 +25,8 @@ export function Sortiment() {
 
         <Reveal className="mt-12 sm:mt-14">
           <Figure
-            image={geranien}
-            alt="Reihen kräftiger roter und rosa Geranien in der Gärtnerei Stein"
+            image={stiefmuetterchen}
+            alt="Ein Meer blühender Stiefmütterchen in den Gewächshäusern der Gärtnerei Stein"
             eyebrow="Aus unseren Gewächshäusern"
             caption="Kräftige Beet- und Balkonpflanzen, Saison für Saison."
             sizes="(min-width: 1280px) 1152px, 100vw"
